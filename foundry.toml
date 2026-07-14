@@ -1,0 +1,21 @@
+[profile.default]
+src = "src"
+out = "out"
+libs = ["lib"]
+fs_permissions = [{ access = "read", path = "./broadcast" }]
+
+remappings = ['@chainlink/contracts/=lib/chainlink-evm/contracts/']
+
+# Named RPC endpoints. Reference them with `--rpc-url <name>`.
+# `${VAR}` is read from your environment / .env file.
+[rpc_endpoints]
+anvil = "http://127.0.0.1:8545"
+sepolia = "${SEPOLIA_RPC_URL}"
+mainnet = "${MAINNET_RPC_URL}"
+
+# Etherscan keys per network, used by `--verify`.
+[etherscan]
+sepolia = { key = "${ETHERSCAN_API_KEY}" }
+mainnet = { key = "${ETHERSCAN_API_KEY}" }
+
+# See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
