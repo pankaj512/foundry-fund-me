@@ -74,10 +74,7 @@ contract FundMeTest is Test {
         uint256 endingContractBalance = address(fundMe).balance;
 
         assertEq(endingContractBalance, 0);
-        assertEq(
-            startingOwnerBalance + startingContractBalance,
-            endingOwnerBalance
-        );
+        assertEq(startingOwnerBalance + startingContractBalance, endingOwnerBalance);
     }
 
     function testWithdrawFromMultipleFunders() public funded {
@@ -101,10 +98,7 @@ contract FundMeTest is Test {
         uint256 endingContractBalance = address(fundMe).balance;
 
         assertEq(endingContractBalance, 0);
-        assertEq(
-            startingOwnerBalance + startingContractBalance,
-            endingOwnerBalance
-        );
+        assertEq(startingOwnerBalance + startingContractBalance, endingOwnerBalance);
     }
 
     function testFallbackReceiveFunction() public funded {
@@ -112,7 +106,7 @@ contract FundMeTest is Test {
         uint256 startingContractBalance = address(fundMe).balance;
 
         vm.prank(USER);
-        (bool success, ) = address(fundMe).call{value: 1 ether}("");
+        (bool success,) = address(fundMe).call{value: 1 ether}("");
         require(success, "Call failed");
 
         uint256 endingUserBalance = USER.balance;
